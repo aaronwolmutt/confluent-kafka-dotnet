@@ -17,6 +17,7 @@
 // Refer to LICENSE for more information.
 
 using System;
+using System.Runtime.Remoting.Messaging;
 
 namespace Confluent.Kafka
 {
@@ -239,11 +240,42 @@ namespace Confluent.Kafka
             => new Offset(a.Value + b);
 
         /// <summary>
+        ///     Subtract an integer value from an Offset value.
+        /// </summary>
+        /// <param name="a">
+        ///     The Offset value to subtract the integer value from. 
+        /// </param>
+        /// <param name="b">
+        ///     The integer value to subtract from the Offset value.
+        /// </param>
+        /// <returns>
+        ///     The Offset value decremented by the integer value b.
+        /// </returns>
+        public static Offset operator -(Offset a, int b)
+            => new Offset(a.Value - b);
+
+        /// <summary>
+        ///     Subtract a long value from an Offset value.
+        /// </summary>
+        /// <param name="a">
+        ///     The Offset value to subtract the long value from. 
+        /// </param>
+        /// <param name="b">
+        ///     The long value to subtract from the Offset value.
+        /// </param>
+        /// <returns>
+        ///     The Offset value decremented by the long value b.
+        /// </returns>
+        public static Offset operator -(Offset a, long b)
+            => new Offset(a.Value - b);
+
+        /// <summary>
         ///     Returns a hash code for this Offset.
         /// </summary>
         /// <returns>
         ///     An integer that specifies a hash value for this Offset.
-        /// </returns>
+        /// </returns>        
+
         public override int GetHashCode()
             => Value.GetHashCode();
 
